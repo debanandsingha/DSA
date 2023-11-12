@@ -3,21 +3,20 @@
 
 void createList();
 void displayList();
-void createListWithTail();
+void createListWithTail();  //maintaining a tail pointer
 
 struct node{
     int data;
     struct node *next;
     struct node *prev;
 };
-struct node *head, *tail;
-
-head=NULL;
-tail=NULL;
+struct node *head=NULL, *tail=NULL;
 
 void main(){
 
-    createList();
+    // createList();
+
+    createListWithTail();   //linked list with maintained Tail pointer
     displayList();    
 
 }
@@ -60,5 +59,26 @@ void displayList(){
 }
 
 void createListWithTail(){
-    
+    struct node *new;   // no need of temp pointer coz tail will be there
+
+    int choice;
+    while(choice){
+        new=(struct node*)malloc(sizeof(struct node));
+        printf("Enter data: ");
+        scanf("%d",&new->data);
+
+        new->prev=new->next=NULL;   //node → |x|data|x|
+
+        //Adding new node to the linked list
+        if(head==NULL){
+            head=tail=new;  // |head| → |x|data|x| ← |tail|
+        }else{
+            tail->next=new; // |prev|data|next| ← |tail| => tail=prevNode
+            new->prev=tail; // |tail|newNode|x|
+            tail=new;   //setting tail to point to new node
+        }
+
+        printf("New node? Yes[1]/No[0]: ");
+        scanf("%d",&choice);
+    }
 }
