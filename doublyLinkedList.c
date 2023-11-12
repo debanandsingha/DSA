@@ -8,6 +8,7 @@ void createListWithTail();  //maintaining a tail pointer
 void insertBeg();
 void insertEnd();
 void insertatPOS();
+void insertafterPOS();  //Traverse till that position to insert node after that positon
 
 int length();
 
@@ -167,7 +168,7 @@ void insertatPOS(){
             head=new;
 
         }else{
-            
+
             struct node *temp;
             temp=head;
 
